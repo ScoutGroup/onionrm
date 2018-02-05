@@ -1,42 +1,73 @@
 {
-	"name"        : "onionrm",
-	"description" : "Onion Relational Mapping",
-	"version"     : "1.6.0",
-	"license"     : "MIT",
-	"homepage"    : "https://github.com/ScoutGroup/onionrm",
-	"repository"  : "https://github.com/ScoutGroup/onionrm.git",
-	"contributors": [
-		{ "name" : "Diogo Resende",    "email" : "dresende@thinkdigital.pt"},
-		{ "name" : "Bramus Van Damme", "email" : "bramus@bram.us" },
-		{ "name" : "Lorien Gamaroff",  "email" : "lorien@gamaroff.org" },
-		{ "name" : "preslavrachev" },
-		{ "name" : "Chris Cowan",      "email" : "me@chriscowan.us" },
-		{ "name" : "Paul Dixon",       "email" : "paul.dixon@mintbridge.co.uk" },
-		{ "name" : "David Kosub" },
-		{ "name" : "Arek W",           "email" : "arek01@gmail.com" },
-		{ "name" : "Joseph Gilley",    "email" : "joe.gilley@gmail.com" },
-		{ "name" : "Benjamin Pannell", "email" : "admin@sierrasoftworks.com" },
-		{ "name" : "Jason Whitehorn",  "email" : "jason.whitehorn@gmail.com" }
-	],
-	"main"        : "./lib/ORM",
-	"scripts"     : {
-		"test"      : "make test"
-	},
-	"engines"     : {
-		"node"      : "*"
-	},
-	"analyse"     : false,
-	"dependencies": {
-		"enforce"      : "0.1.6",
-		"hat"          : "0.0.3",
-		"lodash"       : "2.4.1",
-		"pg"           : "6.1.2"
-	},
-	"devDependencies": {
-		"async"   : "*",
-		"mocha"   : "1.13.0",
-		"should"  : "1.2.2",
-		"glob"    : "3.2.8"
-	},
-	"optionalDependencies": {}
+  "name": "onionrm",
+  "description": "Onion Relational Mapping",
+  "version": "1.6.1",
+  "license": "MIT",
+  "homepage": "https://github.com/ScoutGroup/onionrm",
+  "repository": "https://github.com/ScoutGroup/onionrm.git",
+  "contributors": [
+    {
+      "name": "Diogo Resende",
+      "email": "dresende@thinkdigital.pt"
+    },
+    {
+      "name": "Bramus Van Damme",
+      "email": "bramus@bram.us"
+    },
+    {
+      "name": "Lorien Gamaroff",
+      "email": "lorien@gamaroff.org"
+    },
+    {
+      "name": "preslavrachev"
+    },
+    {
+      "name": "Chris Cowan",
+      "email": "me@chriscowan.us"
+    },
+    {
+      "name": "Paul Dixon",
+      "email": "paul.dixon@mintbridge.co.uk"
+    },
+    {
+      "name": "David Kosub"
+    },
+    {
+      "name": "Arek W",
+      "email": "arek01@gmail.com"
+    },
+    {
+      "name": "Joseph Gilley",
+      "email": "joe.gilley@gmail.com"
+    },
+    {
+      "name": "Benjamin Pannell",
+      "email": "admin@sierrasoftworks.com"
+    },
+    {
+      "name": "Jason Whitehorn",
+      "email": "jason.whitehorn@gmail.com"
+    }
+  ],
+  "main": "./lib/ORM",
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "analyse": false,
+  "dependencies": {
+    "enforce": "0.1.6",
+    "hat": "0.0.3",
+    "lodash": "2.4.1",
+    "pg": "6.1.2"
+  },
+  "devDependencies": {
+    "async": "*",
+    "mocha": "1.13.0",
+    "should": "1.2.2",
+    "glob": "3.2.8"
+  },
+  "optionalDependencies": {}
 }
