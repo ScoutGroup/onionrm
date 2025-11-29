@@ -20,7 +20,8 @@
 	],
 	"main"        : "./lib/ORM",
 	"scripts"     : {
-		"test"      : "make test"
+		"test"            : "make test",
+		"test:prepare-db" : "bash scripts/prepare-test-db.sh"
 	},
 	"engines"     : {
 		"node"      : "*"

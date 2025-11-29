@@ -1,0 +1,22 @@
+services:
+  db_test:
+    image: sibedge/postgres-plv8:16.10-3.2.3-alpine
+    container_name: onionrm-unit-test
+    restart: always
+    shm_size: 1gb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - TZ=UTC
+      - PGTZ=UTC
+#      - PGDATA=./test-db
+      - PGDATA=/dev/shm/pgdata
+    ports:
+      - '7101:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command:
+      -c max_connections=2000
