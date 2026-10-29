@@ -22,7 +22,12 @@ ORM_PROTOCOL=postgres node test/run
 ```
 
 ### Test Configuration
-Tests require a `test/config.js` file. Copy from `test/config.example.js` and configure database connection strings for your local PostgreSQL instance.
+Tests require a `test/config.js` file. Either copy `test/config.example.js` and edit it, or use the Docker flow in `TESTING.md`:
+```bash
+docker-compose -f test-docker-compose.yml up -d   # Postgres 16 + PLV8 on port 7101
+npm run test:prepare-db                           # creates DB/user, writes test/config.js
+```
+Run a single file: `ORM_PROTOCOL=postgres node_modules/.bin/mocha test/integration/<file>.js`. There is no lint or build step.
 
 ## Architecture Overview
 
@@ -137,20 +142,9 @@ This handles PostgreSQL-specific types (JSON, arrays, dates, UUIDs).
 ### Partition Support
 Models can define a `partition` function to route records to partition tables. The function is called with the instance context and returns the target table name.
 
-## Current Development: Batch Insert Optimization
+## Batch Insert
 
-See `specs/01-onionrm-batch-insert-optimization.md` for full specification.
-
-**Goal:** Add `Model.createBatch()` method for high-performance bulk inserts using PostgreSQL multi-row INSERT syntax.
-
-**Key Changes:**
-1. **lib/sql/Insert.js** - Add `setBatch(valuesArray)` method and multi-row INSERT generation
-2. **lib/Drivers/DML/postgres.js** - Add `batchInsert()` method with automatic batching (default 500 records/batch)
-3. **lib/Model.js** - Add `model.createBatch(dataArray, options, callback)` method
-
-**Design Principle:** `Model.createBatch()` is a separate explicit method. `Model.create()` remains completely unchanged for zero risk to existing code.
-
-**Performance Target:** 10-15x faster for bulk operations (1000 records in <2 seconds vs 10-30 seconds).
+`Model.createBatch(dataArray, [options], callback)` (lib/Model.js) does bulk inserts via multi-row `INSERT` (`setBatch()` in lib/sql/Insert.js, `batchInsert()` in lib/Drivers/DML/postgres.js). Records are split into batches of `options.batchSize` (default 500). `Model.create()` is intentionally untouched. Spec: `specs/01-onionrm-batch-insert-optimization.md`; usage: `examples/batch-insert-example.js`.
 
 ## Testing
 
